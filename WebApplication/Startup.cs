@@ -28,7 +28,8 @@ namespace WebApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddViewLocalization()
+                .AddDataAnnotationsLocalization(x => x.DataAnnotationLocalizerProvider = (type, facotry) => facotry.Create(typeof(Program)));
 
 
             services.AddSingleton<IService<User>>(x => new Service<User>( new List<User> {
@@ -37,6 +38,16 @@ namespace WebApplication
                 new User { Id= 3, Username = "Username3", Password = "Password3" }
                 }
             ));
+
+
+            services.AddLocalization(x => x.ResourcesPath = "Resources");
+            services.Configure<RequestLocalizationOptions>(x =>
+           {
+               x.SetDefaultCulture("en-us");
+               x.AddSupportedCultures("en-us", "pl");
+               x.AddSupportedUICultures("en-us", "pl");
+           });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +65,8 @@ namespace WebApplication
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseRequestLocalization();
 
             app.UseRouting();
 
