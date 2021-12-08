@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -45,6 +48,21 @@ namespace WebApplication
             app.UseRouting();
 
             app.UseAuthorization();
+
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                //using Microsoft.Extensions.FileProviders;
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Downloads")),
+                RequestPath = "/pliki",
+                //using Microsoft.AspNetCore.Http;
+                OnPrepareResponse = x => x.Context.Response.Headers.Append("Cache-Control", "public, max-age=60000")
+            });
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Downloads")),
+                RequestPath = "/pliki"
+            });
 
             app.UseEndpoints(endpoints =>
             {
