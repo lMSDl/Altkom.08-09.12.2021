@@ -34,5 +34,15 @@ namespace Services
         {
             return _entities.SingleOrDefault(x => x.Id == id);
         }
+
+        public void Update(int id, T entity)
+        {
+            var item = Read(id);
+            if (item == null)
+                return;
+            _entities.Remove(item);
+            entity.Id = id;
+            _entities.Add(entity);
+        }
     }
 }

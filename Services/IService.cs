@@ -9,5 +9,6 @@ namespace Services
         IEnumerable<T> Read();
         T Read(int id);
         void Delete(int id);
+        void Update(int id, T entity);
     }
 }

@@ -33,13 +33,14 @@
             <tr>
                 <partial name="_UsersHeader" model="new Models.User()" />
             </tr>
-        </thead>
+        </thead>sssasda
         <tbody>
             @foreach (var item in Model)
             {
             <tr>
                 <partial name="_UserBody" for="@item" />
                 <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">@StringLocalizer["Edit"]</a>
                     <a asp-action="Delete" asp-route-id="@item.Id">@StringLocalizer["Delete"]</a>
                 </td>
             </tr>

@@ -58,5 +58,27 @@ namespace WebApplication.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Edit(int? id)
+        {
+            if (!id.HasValue)
+                return BadRequest();
+
+            var item = _service.Read(id.Value);
+            if (item == null)
+                return NotFound();
+
+            return View(item);
+        }
+
+        [HttpPost]
+        public IActionResult EditUser(int id, [Bind("Password", "Role")]User user)
+        {
+            var item = _service.Read(id);
+            user.Username = item.Username;
+            _service.Update(id, user);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
