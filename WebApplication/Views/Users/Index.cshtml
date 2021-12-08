@@ -1,22 +1,29 @@
 ﻿@using Models
 @model IEnumerable<User>
 
-@using Microsoft.Extensions.Localization
-@inject IStringLocalizer<Program> StringLocalizer
-
-@using Microsoft.AspNetCore.Mvc.Localization
-@inject IHtmlLocalizer<Program> HtmlLocalizer
-
-@inject IViewLocalizer ViewLocalizer
 
 
 @{
     ViewBag.Title = StringLocalizer["Users"];
+
+    var rolesSearchList = Enum.GetValues<Roles>().Select(x => new SelectListItem(StringLocalizer[x.ToString()], x.ToString())).ToList();
+    rolesSearchList.Insert(0, new SelectListItem(string.Empty, string.Empty));
 }
 
 @*@HtmlLocalizer["UsersCounter", Model.Count()]*@
 @ViewLocalizer["UsersCounter", Model.Count()]
 
+<div>
+
+    @using (@Html.BeginForm())
+    {
+        @StringLocalizer["Phrase"] @Html.TextBox("phrase") <br>
+        @StringLocalizer["Roles"] @Html.DropDownList("roles", rolesSearchList) <br>
+
+        <input type="submit" value="@StringLocalizer["Search"]" asp-action="Search" />
+    }
+
+</div>
 <div>
 
     <table class="table">
@@ -26,28 +33,34 @@
                     @Html.DisplayName(StringLocalizer[nameof(Models.User.Id)])
                 </th>
                 <th>
-                   @*@ViewLocalizer[Html.DisplayNameFor(x => x.Username)]*@
+                    @*@ViewLocalizer[Html.DisplayNameFor(x => x.Username)]*@
                     @Html.DisplayNameFor(x => x.Username)
                 </th>
                 <th>
                     @Html.Label(StringLocalizer[nameof(Models.User.Password)])
+                </th>
+                <th>
+                    @StringLocalizer[nameof(Models.User.Role)]
                 </th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(_ => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(_ => item.Username)
-                    </td>
-                    <td>
-                        @item.Password
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(_ => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(_ => item.Username)
+                </td>
+                <td>
+                    @item.Password
+                </td>
+                <td>
+                    @item.Role
+                </td>
+            </tr>
             }
         </tbody>
     </table>

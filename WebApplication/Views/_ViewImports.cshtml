@@ -1,3 +1,12 @@
 ﻿@using WebApplication
 @using WebApplication.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@using Microsoft.Extensions.Localization
+@inject IStringLocalizer<Program> StringLocalizer
+
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IHtmlLocalizer<Program> HtmlLocalizer
+
+@inject IViewLocalizer ViewLocalizer

@@ -33,9 +33,9 @@ namespace WebApplication
 
 
             services.AddSingleton<IService<User>>(x => new Service<User>( new List<User> {
-                new User { Id= 1, Username = "Username1", Password = "Password1" },
-                new User { Id= 2, Username = "Username2", Password = "Password2" },
-                new User { Id= 3, Username = "Username3", Password = "Password3" }
+                new User { Id= 1, Username = "Username1", Password = "Password1", Role = Roles.Read | Roles.Create },
+                new User { Id= 2, Username = "Username2", Password = "Password2", Role = Roles.Read | Roles.Update },
+                new User { Id= 3, Username = "Username3", Password = "Password3", Role = Roles.Read | Roles.Create | Roles.Update | Roles.Delete }
                 }
             ));
 

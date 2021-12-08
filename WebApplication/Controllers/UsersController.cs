@@ -19,7 +19,20 @@ namespace WebApplication.Controllers
 
         public IActionResult Index()
         {
-            return View(_service.Read());
+            return Search(null, null);
+        }
+
+        public IActionResult Search(string phrase, Roles? roles)
+        {
+            var users = _service.Read();
+            if(!string.IsNullOrWhiteSpace(phrase))
+            {
+                users = users.Where(x => x.Password.Contains(phrase, StringComparison.InvariantCultureIgnoreCase) || x.Username.Contains(phrase, StringComparison.InvariantCultureIgnoreCase));
+            }
+            if (roles.HasValue)
+                users = users.Where(x => x.Role.HasFlag(roles.Value));
+
+            return View(nameof(Index), users);
         }
     }
 }
