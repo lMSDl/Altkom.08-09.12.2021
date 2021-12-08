@@ -6,6 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Models;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,6 +29,14 @@ namespace WebApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+
+            services.AddSingleton<IService<User>>(x => new Service<User>( new List<User> {
+                new User { Id= 1, Username = "Username1", Password = "Password1" },
+                new User { Id= 2, Username = "Username2", Password = "Password2" },
+                new User { Id= 3, Username = "Username3", Password = "Password3" }
+                }
+            ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
