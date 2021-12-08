@@ -20,6 +20,8 @@
         @StringLocalizer["Phrase"] @Html.TextBox("phrase") <br>
         @StringLocalizer["Roles"] @Html.DropDownList("roles", rolesSearchList) <br>
 
+        @*@Html.AntiForgeryToken()*@
+
         <input type="submit" value="@StringLocalizer["Search"]" asp-action="Search" />
     }
 

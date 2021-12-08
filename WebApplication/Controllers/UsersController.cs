@@ -19,9 +19,10 @@ namespace WebApplication.Controllers
 
         public IActionResult Index()
         {
-            return Search(null, null);
+            return View(_service.Read());
         }
 
+        [ValidateAntiForgeryToken]
         public IActionResult Search(string phrase, Roles? roles)
         {
             var users = _service.Read();
