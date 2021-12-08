@@ -1,0 +1,15 @@
+﻿@model Models.User
+
+<th>
+    @Html.DisplayName(StringLocalizer[nameof(Models.User.Id)])
+</th>
+<th>
+    @*@ViewLocalizer[Html.DisplayNameFor(x => x.Username)]*@
+    @Html.DisplayNameFor(x => x.Username)
+</th>
+<th>
+    @Html.Label(StringLocalizer[nameof(Models.User.Password)])
+</th>
+<th>
+    @StringLocalizer[nameof(Models.User.Role)]
+</th>

@@ -7,5 +7,7 @@ namespace Services
     public interface IService<T> where T : Entity
     {
         IEnumerable<T> Read();
+        T Read(int id);
+        void Delete(int id);
     }
 }

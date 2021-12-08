@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication.Controllers
 {
+    [AutoValidateAntiforgeryToken]
     public class UsersController : Controller
     {
         private IService<User> _service;
@@ -22,7 +23,8 @@ namespace WebApplication.Controllers
             return View(_service.Read());
         }
 
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
+        [HttpPost]
         public IActionResult Search(string phrase, Roles? roles)
         {
             var users = _service.Read();
@@ -34,6 +36,27 @@ namespace WebApplication.Controllers
                 users = users.Where(x => x.Role.HasFlag(roles.Value));
 
             return View(nameof(Index), users);
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (!id.HasValue)
+                return BadRequest();
+
+            var item = _service.Read(id.Value);
+            if ( item == null)
+                return NotFound();
+
+            return View(item);
+        }
+
+        //[ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult DeleteUser(int id)
+        {
+            _service.Delete(id);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

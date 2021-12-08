@@ -31,36 +31,16 @@
     <table class="table">
         <thead>
             <tr>
-                <th>
-                    @Html.DisplayName(StringLocalizer[nameof(Models.User.Id)])
-                </th>
-                <th>
-                    @*@ViewLocalizer[Html.DisplayNameFor(x => x.Username)]*@
-                    @Html.DisplayNameFor(x => x.Username)
-                </th>
-                <th>
-                    @Html.Label(StringLocalizer[nameof(Models.User.Password)])
-                </th>
-                <th>
-                    @StringLocalizer[nameof(Models.User.Role)]
-                </th>
+                <partial name="_UsersHeader" model="new Models.User()" />
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
             <tr>
+                <partial name="_UserBody" for="@item" />
                 <td>
-                    @Html.DisplayFor(_ => item.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(_ => item.Username)
-                </td>
-                <td>
-                    @item.Password
-                </td>
-                <td>
-                    @item.Role
+                    <a asp-action="Delete" asp-route-id="@item.Id">@StringLocalizer["Delete"]</a>
                 </td>
             </tr>
             }

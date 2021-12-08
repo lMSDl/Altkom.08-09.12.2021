@@ -120,6 +120,12 @@
   <data name="&lt;h2&gt;Users: {0}&lt;/h2&gt;" xml:space="preserve">
     <value>&lt;h2&gt;Użytkownicy: {0}&lt;/h2&gt;</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Utwórz</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>Identyfikator</value>
   </data>
@@ -128,6 +134,21 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Hasło</value>
+  </data>
+  <data name="Phrase" xml:space="preserve">
+    <value>Fraza</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Odczytaj</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Rola</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Szukaj</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Zaktualizuj</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Nazwa użytkownika</value>

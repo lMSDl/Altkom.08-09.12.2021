@@ -24,5 +24,15 @@ namespace Services
         {
             return _entities.ToList();
         }
+
+        public void Delete(int id)
+        {
+            _entities.Remove(Read(id));
+        }
+
+        public T Read(int id)
+        {
+            return _entities.SingleOrDefault(x => x.Id == id);
+        }
     }
 }

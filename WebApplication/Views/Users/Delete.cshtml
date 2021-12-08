@@ -1,0 +1,29 @@
+﻿@model Models.User
+
+<h2>Czy chcesz usunąć poniższego użytkownika?</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <partial name="_UsersHeader" for="@Model" />
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <partial name="_UserBody" for="@Model" />
+        </tr>
+    </tbody>
+</table>
+
+<form asp-action="DeleteUser" asp-antiforgery="true">
+    <input type="hidden" asp-for="@Model.Id" />
+    <input type="submit" value="@StringLocalizer["Delete"]" class="btn" />
+    <a asp-action="Index" class="btn">@StringLocalizer["Cancel"]</a>
+</form>
+
+@using (Html.BeginForm("DeleteUser", "Users"))
+{
+@Html.HiddenFor(x => x.Id)
+<input type="submit" value="@StringLocalizer["Delete"]" class="btn" />
+@Html.ActionLink(StringLocalizer["Cancel"], "Index", "Users", null, new { @class = "btn" })
+}
