@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Models;
 using Services;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 namespace WebApplication.Controllers
 {
     [AutoValidateAntiforgeryToken]
+    [Authorize]
     public class UsersController : Controller
     {
         private IService<User> _service;
@@ -18,6 +20,8 @@ namespace WebApplication.Controllers
             _service = service;
         }
 
+
+        [Authorize(Roles = nameof(Roles.Read))]
         public IActionResult Index()
         {
             return View(_service.Read());
@@ -25,6 +29,7 @@ namespace WebApplication.Controllers
 
         //[ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = nameof(Roles.Read))]
         public IActionResult Search(string phrase, Roles? roles)
         {
             var users = _service.Read();
@@ -38,6 +43,10 @@ namespace WebApplication.Controllers
             return View(nameof(Index), users);
         }
 
+
+        [Authorize(Roles = "Read, Delete")] //OR     // \
+                                                     //   => AND
+        //[Authorize(Roles = nameof(Roles.Read))]    // /
         public IActionResult Delete(int? id)
         {
             if (!id.HasValue)
@@ -52,6 +61,7 @@ namespace WebApplication.Controllers
 
         //[ValidateAntiForgeryToken]
         [HttpPost]
+        [Authorize(Roles = nameof(Roles.Delete))]
         public IActionResult DeleteUser(int id)
         {
             _service.Delete(id);
@@ -59,6 +69,7 @@ namespace WebApplication.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = nameof(Roles.Update))]
         public IActionResult Edit(int? id)
         {
             if (!id.HasValue)
@@ -72,6 +83,7 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = nameof(Roles.Update))]
         public IActionResult EditUser(int id, [Bind("Password", "Role", "Username")]User user)
         {
             if (!ModelState.IsValid)
