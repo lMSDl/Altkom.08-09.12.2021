@@ -1,0 +1,25 @@
+﻿@page
+@model RazorPages.Pages.Users.DeleteModel
+@{
+}
+
+<h2>Czy chcesz usunąć poniższego użytkownika?</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <partial name="_UsersHeader" for="@Model.SelectedUser" />
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <partial name="_UserBody" for="@Model.SelectedUser" />
+        </tr>
+    </tbody>
+</table>
+
+<form method="post" asp-antiforgery="true">
+    <input type="hidden" asp-for="@Model.SelectedUser.Id" />
+    <input type="submit" value="Delete" class="btn" />
+    <a asp-page="./Index" class="btn">Cancel</a>
+</form>

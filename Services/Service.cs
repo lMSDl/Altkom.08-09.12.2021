@@ -44,5 +44,13 @@ namespace Services
             entity.Id = id;
             _entities.Add(entity);
         }
+
+        public int Create(T entity)
+        {
+            entity.Id = !_entities.Any() ? 1 : _entities.Max(x => x.Id) + 1;
+            _entities.Add(entity);
+
+            return entity.Id;
+        }
     }
 }

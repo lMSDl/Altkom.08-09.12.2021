@@ -10,5 +10,6 @@ namespace Services
         T Read(int id);
         void Delete(int id);
         void Update(int id, T entity);
+        int Create(T entity);
     }
 }

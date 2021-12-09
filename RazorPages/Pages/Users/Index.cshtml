@@ -1,0 +1,30 @@
+﻿@page
+@model RazorPages.Pages.Users.IndexModel
+@{
+
+}
+
+<a asp-page="./Add" class="btn">Add</a>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <partial name="_UsersHeader" model="new Models.User()" />
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Service.Read())
+            {
+                <tr>
+                    <partial name="_UserBody" for="@item" />
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
