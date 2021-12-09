@@ -72,9 +72,21 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditUser(int id, [Bind("Password", "Role")]User user)
+        public IActionResult EditUser(int id, [Bind("Password", "Role", "Username")]User user)
         {
+            if (!ModelState.IsValid)
+            {
+                user.Id = id;
+                return View("Edit", user);
+            }
+
             var item = _service.Read(id);
+            if (item.Password == user.Password)
+            {
+                ModelState.AddModelError(nameof(user), "Hasło nie może być takie jak ostatnio");
+                return View("Edit", user);
+            }
+
             user.Username = item.Username;
             _service.Update(id, user);
 
