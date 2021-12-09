@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{0C229062-DD28-4D99-A059-7EFFFFBE1988}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplication\WebApplication.csproj", "{0C229062-DD28-4D99-A059-7EFFFFBE1988}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{E9A8E85A-BF3C-4340-953A-943B2D375495}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{E9A8E85A-BF3C-4340-953A-943B2D375495}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{892E195F-CB7E-44ED-8D90-01E3D9351935}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{892E195F-CB7E-44ED-8D90-01E3D9351935}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorPages", "RazorPages\RazorPages.csproj", "{47425697-1249-4D8A-843E-2BDAF494CB9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{892E195F-CB7E-44ED-8D90-01E3D9351935}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{892E195F-CB7E-44ED-8D90-01E3D9351935}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{892E195F-CB7E-44ED-8D90-01E3D9351935}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47425697-1249-4D8A-843E-2BDAF494CB9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47425697-1249-4D8A-843E-2BDAF494CB9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47425697-1249-4D8A-843E-2BDAF494CB9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47425697-1249-4D8A-843E-2BDAF494CB9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
