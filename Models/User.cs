@@ -11,9 +11,9 @@ namespace Models
     public class User : Entity
     {
         [DisplayName("Login")]
-        [Required]
+        //[Required]
         public string Username { get; set; }
-        [MinLength(8)]
+        //[MinLength(8, ErrorMessage = "Za którkie!")]
         public string Password { get; set; }
 
         public Roles Role { get; set; }
